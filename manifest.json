@@ -3,6 +3,9 @@
   "name": "paste-string-filter",
   "version": "0.0.1",
   "description": "Filter pasting string with regexp settings.",
+  "permissions": [
+    "storage"
+  ],
   "content_scripts": [{
     "matches": ["https://*/*"],
     "js": [

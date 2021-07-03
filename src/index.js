@@ -1,4 +1,16 @@
+import storage from './storage';
+let enable = false;
+storage.get(["enable"]).then((items) => {
+  enable = items['enable'];
+  console.log(enable);
+});
+
 window.addEventListener('paste', (event) => {
+    if (!enable) {
+      console.log("Filter is disable now.")
+      return;
+    }
+
     let clipboardData = event.clipboardData || window.clipboardData || event.originalEvent.clipboardData;
     let paste = clipboardData.getData('text');
 
