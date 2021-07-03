@@ -5,6 +5,8 @@
   "description": "Filter pasting string with regexp settings.",
   "content_scripts": [{
     "matches": ["https://*/*"],
-    "js": [ "script.js"]
+    "js": [
+      "dist/index.bundle.js"
+    ]
   }]
 }
