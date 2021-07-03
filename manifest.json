@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "paste-string-filter",
+  "version": "0.0.1",
+  "description": "Filter pasting string with regexp settings.",
+  "content_scripts": [{
+    "matches": ["https://*/*"],
+    "js": [ "script.js"]
+  }]
+}
