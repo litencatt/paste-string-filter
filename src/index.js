@@ -1,4 +1,10 @@
 import storage from './storage';
+
+// Show local storage for this chrome extension
+chrome.storage.local.get(function(result) {
+  console.log(result);
+})
+
 let enable = false;
 storage.get(["enable"]).then((items) => {
   enable = items['enable'];
