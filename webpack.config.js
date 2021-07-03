@@ -2,6 +2,7 @@ module.exports = {
   mode: 'production',
   entry: {
     index: __dirname + '/src/index.js',
+    popup: __dirname + '/src/popup.js',
   },
   output: {
     path: __dirname + "/dist",

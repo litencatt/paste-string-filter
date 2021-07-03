@@ -6,6 +6,9 @@
   "permissions": [
     "storage"
   ],
+  "browser_action": {
+    "default_popup": "html/popup.html"
+  },
   "content_scripts": [{
     "matches": ["https://*/*"],
     "js": [
