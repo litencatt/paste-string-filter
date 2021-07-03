@@ -8,7 +8,7 @@ window.addEventListener('paste', (event) => {
     const elem = window.document.activeElement;
     if (!elem || !["TEXTAREA"].includes(elem.nodeName)) return false;
 
-    // $BA*BrHO0O$r(Bpaste$BJ8;zNs$GCV49(B
+    // 選択範囲をpaste文字列で置換
     orignal = elem.value;
     selectionStart = elem.selectionStart;
     selectionEnd = elem.selectionEnd;
