@@ -35,7 +35,7 @@ document.addEventListener('paste', (event) => {
 
     paste = paste.replace(mailRegExp, replacedStr);
     elem.value = orignal.slice(0, selectionStart) + paste + orignal.slice(selectionEnd);
-  });
 
-  event.preventDefault();
+    event.preventDefault();
+  });
 });
