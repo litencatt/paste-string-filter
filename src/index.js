@@ -1,4 +1,22 @@
+import storage from './storage';
+
+// Show local storage for this chrome extension
+chrome.storage.local.get(function(result) {
+  console.log(result);
+})
+
+let enable = false;
+storage.get(["enable"]).then((items) => {
+  enable = items['enable'];
+  console.log(enable);
+});
+
 window.addEventListener('paste', (event) => {
+    if (!enable) {
+      console.log("Filter is disable now.")
+      return;
+    }
+
     let clipboardData = event.clipboardData || window.clipboardData || event.originalEvent.clipboardData;
     let paste = clipboardData.getData('text');
 
@@ -9,9 +27,9 @@ window.addEventListener('paste', (event) => {
     if (!elem || !["TEXTAREA"].includes(elem.nodeName)) return false;
 
     // 選択範囲をpaste文字列で置換
-    orignal = elem.value;
-    selectionStart = elem.selectionStart;
-    selectionEnd = elem.selectionEnd;
+    const orignal = elem.value;
+    const selectionStart = elem.selectionStart;
+    const selectionEnd = elem.selectionEnd;
     elem.value = orignal.slice(0, selectionStart) + paste + orignal.slice(selectionEnd);
 
     event.preventDefault();
