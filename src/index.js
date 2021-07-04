@@ -19,7 +19,7 @@ document.addEventListener('paste', (event) => {
   let paste = clipboardData.getData('text');
 
   const mailRegExp = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/;
-  const replacedStr = "(replaced)";
+  const filteredStr = "(filtered)";
 
   storage.get(["enable"]).then((items) => {
     if (!items.hasOwnProperty("enable")) {
@@ -33,7 +33,7 @@ document.addEventListener('paste', (event) => {
       return;
     }
 
-    paste = paste.replace(mailRegExp, replacedStr);
+    paste = paste.replace(mailRegExp, filteredStr);
     elem.value = orignal.slice(0, selectionStart) + paste + orignal.slice(selectionEnd);
 
     event.preventDefault();
