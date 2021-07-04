@@ -1,18 +1,18 @@
 {
-  "manifest_version": 2,
   "name": "paste-string-filter",
   "version": "0.0.1",
+  "manifest_version": 3,
   "description": "Filter pasting string with regexp settings.",
-  "permissions": [
-    "storage"
-  ],
-  "browser_action": {
+  "permissions": ["storage"],
+  "action": {
     "default_popup": "html/popup.html"
   },
-  "content_scripts": [{
-    "matches": ["https://*/*"],
-    "js": [
-      "dist/index.bundle.js"
-    ]
-  }]
+  "content_scripts": [
+    {
+    "matches": [
+      "https://*/*"
+    ],
+    "js": ["dist/index.bundle.js"]
+    }
+  ]
 }
