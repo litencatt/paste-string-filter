@@ -5,12 +5,6 @@ chrome.storage.local.get(function(result) {
   console.log(result);
 })
 
-//let enable = false;
-//storage.get(["enable"]).then((items) => {
-//  enable = items['enable'];
-//  console.log(enable);
-//});
-
 document.addEventListener('paste', (event) => {
   const elem = window.document.activeElement;
   if (!elem || !["TEXTAREA"].includes(elem.nodeName)) {
