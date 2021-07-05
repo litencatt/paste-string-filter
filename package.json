@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "watch": "watch 'webpack' ./src",
+    "watch": "webpack --watch ./src",
     "build": "webpack --mode production"
   },
   "repository": "git@github.com:litencatt/paste-string-filter.git",
