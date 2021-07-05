@@ -1,4 +1,19 @@
 import { storage } from './storage'
+chrome.storage.local.set(
+  {
+    filteredStr: '(filtered)',
+    regexps: {
+      mail: {
+        regexp: "[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+",
+        enable: true
+      },
+      password: {
+        regexp: "password:.*",
+        enable: true
+      }
+    }
+  }
+)
 
 // Show local storage for this chrome extension
 chrome.storage.local.get((result) => {
