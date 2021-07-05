@@ -1,11 +1,13 @@
+const path = require('path')
+
 module.exports = {
   mode: 'production',
   entry: {
-    index: __dirname + '/src/index.ts',
-    popup: __dirname + '/src/popup.ts',
+    index: path.join(__dirname, '/src/index.ts'),
+    popup: path.join(__dirname, '/src/popup.ts'),
   },
   output: {
-    path: __dirname + '/dist',
+    path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js',
   },
   module: {
