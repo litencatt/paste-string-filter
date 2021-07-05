@@ -23,7 +23,7 @@ document.addEventListener('paste', (event) => {
   }
   let paste = clipboardData.getData('text')
 
-  const mailRegExp = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/
+  const mailRegExp = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/g
   const filteredStr = '(filtered)'
 
   storage.get(['enable']).then((items) => {
