@@ -40,7 +40,6 @@ async function pasteStringFilter(event: any) {
   }
   let paste = clipboardData.getData('text')
 
-  const mailRegExp = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/g
   const filteredStr = '(filtered)'
 
   const items = await storage.get(['enable'])
@@ -58,6 +57,13 @@ async function pasteStringFilter(event: any) {
   }
 
   paste = paste.replace(mailRegExp, filteredStr)
+  items = await storage.get(['regexps'])
+  // @ts-ignore
+  Object.keys(items['regexps']).forEach((key) => {
+    // @ts-ignore
+    let regexp = new RegExp(items['regexps'][key].regexp, 'g')
+    paste = paste.replace(regexp, filteredStr)
+  })
   elem.value = orignal.slice(0, selectionStart) + paste + orignal.slice(selectionEnd)
 
   event.preventDefault()
