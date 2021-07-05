@@ -40,10 +40,7 @@ async function pasteStringFilter(event: any) {
   }
   let paste = clipboardData.getData('text')
 
-  const filteredStr = '(filtered)'
-
-  const items = await storage.get(['enable'])
-
+  let items = await storage.get(['enable'])
   // @ts-ignore
   if (!items.hasOwnProperty('enable')) {
     console.log('enable is not set.')
@@ -56,7 +53,10 @@ async function pasteStringFilter(event: any) {
     return
   }
 
-  paste = paste.replace(mailRegExp, filteredStr)
+  items = await storage.get('filteredStr')
+  // @ts-ignore
+  const filteredStr = items['filteredStr']
+
   items = await storage.get(['regexps'])
   // @ts-ignore
   Object.keys(items['regexps']).forEach((key) => {
