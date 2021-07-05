@@ -5,7 +5,9 @@ chrome.storage.local.get((result) => {
   console.log(result)
 })
 
-document.addEventListener('paste', (event) => {
+document.addEventListener('paste', pasteStringFilter)
+
+async function pasteStringFilter(event: any) {
   const elem = window.document.activeElement as HTMLInputElement
   if (!elem || !['TEXTAREA'].includes(elem.nodeName)) {
     return false
@@ -26,22 +28,22 @@ document.addEventListener('paste', (event) => {
   const mailRegExp = /[\w\-._]+@[\w\-._]+\.[A-Za-z]+/g
   const filteredStr = '(filtered)'
 
-  storage.get(['enable']).then((items) => {
-    // @ts-ignore
-    if (!items.hasOwnProperty('enable')) {
-      console.log('enable is not set.')
-      return
-    }
-    // @ts-ignore
-    const enable = items['enable']
-    if (!enable) {
-      console.log('Filter is disable now.')
-      return
-    }
+  const items = await storage.get(['enable'])
 
-    paste = paste.replace(mailRegExp, filteredStr)
-    elem.value = orignal.slice(0, selectionStart) + paste + orignal.slice(selectionEnd)
+  // @ts-ignore
+  if (!items.hasOwnProperty('enable')) {
+    console.log('enable is not set.')
+    return
+  }
+  // @ts-ignore
+  const enable = items['enable']
+  if (!enable) {
+    console.log('Filter is disable now.')
+    return
+  }
 
-    event.preventDefault()
-  })
-})
+  paste = paste.replace(mailRegExp, filteredStr)
+  elem.value = orignal.slice(0, selectionStart) + paste + orignal.slice(selectionEnd)
+
+  event.preventDefault()
+}
