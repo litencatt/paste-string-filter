@@ -4,9 +4,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf dist; mkdir dist; touch ./dist/.keep",
-    "watch": "yarn run clean && vite build --watch",
-    "build": "yarn run clean && vite build",
+    "watch": "vite build --watch",
+    "build": "vite build",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "repository": "git@github.com:litencatt/paste-string-filter.git",
