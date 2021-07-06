@@ -5,6 +5,7 @@
     "module": "esnext",
     "resolveJsonModule": true,
     "baseUrl": ".",
+    "strict": true,
     "allowJs": true,
     "checkJs": true
   },
