@@ -5,14 +5,22 @@
   "description": "Filter pasting string with regexp settings.",
   "permissions": ["storage"],
   "action": {
-    "default_popup": "html/popup.html"
+    "default_popup": "dist/index.html"
   },
   "content_scripts": [
     {
-    "matches": [
-      "https://*/*"
-    ],
-    "js": ["dist/index.bundle.js"]
+      "matches": [
+        "https://*/*"
+      ],
+      "js": ["loader.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "https://*/*"
+      ],
+      "resources": ["dist/*"]
     }
   ]
 }
