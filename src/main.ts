@@ -37,7 +37,6 @@ interface Items {
 document.addEventListener('paste', pasteStringFilter)
 
 async function pasteStringFilter(event: any) {
-  console.log('fire!')
   const elem = window.document.activeElement as HTMLInputElement
   if (!elem || !['TEXTAREA'].includes(elem.nodeName)) {
     return false
