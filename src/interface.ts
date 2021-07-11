@@ -1,4 +1,5 @@
 export interface Regexp {
+  name: string
   regexp: string
   enable: boolean
 }
