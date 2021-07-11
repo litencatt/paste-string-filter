@@ -1,6 +1,9 @@
 import { storage } from './storage'
+//import { storage } from './localStorage'
 
-chrome.storage.local.set({
+import type { Items } from './interface'
+
+storage.set({
   filteredStr: '(filtered)',
   regexps: {
     mail: {
@@ -15,24 +18,10 @@ chrome.storage.local.set({
 })
 
 // Show local storage for this chrome extension
-chrome.storage.local.get((result) => {
-  console.log(result)
-})
-
-interface Regexp {
-  regexp: string
-  enable: boolean
-}
-
-interface Regexps {
-  [index: string]: Regexp
-}
-
-interface Items {
-  enable: boolean
-  filteredStr: string
-  regexps: Regexps
-}
+// @ts-ignore
+//chrome.storage.local.get((result) => {
+//  console.log(result)
+//})
 
 document.addEventListener('paste', pasteStringFilter)
 
@@ -53,7 +42,7 @@ async function pasteStringFilter(event: any) {
     return false
   }
   let paste = clipboardData.getData('text')
-
+  // @ts-ignore
   const items = (await storage.get(['enable', 'filteredStr', 'regexps'])) as Items
   if (!items.hasOwnProperty('enable')) {
     console.log('enable is not set.')

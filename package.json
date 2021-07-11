@@ -4,6 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "dev": "vite",
     "watch": "vite build --watch",
     "build": "vite build",
     "check": "svelte-check --tsconfig ./tsconfig.json"
