@@ -5,20 +5,18 @@
   //import { storage } from '../localStorage'
   import type { Regexp } from '../interface'
 
-  const getRegexps = async (): Promise<boolean> => {
-    // @ts-ignore
-    return await storage.get(['regexps'])
+  const getRegexps = async (): Promise<Regexp[]> => {
+    const t = await storage.get(['regexps'])
+    return t.regexps
   }
 
   const handleClick = async (): Promise<void> => {
     await storage.set({ regexps: regexps })
   }
 
-  let tmp: any
-  let regexps: Regexp[] = []
+  let regexps: Regexp[]
   onMount(async () => {
-    tmp = await getRegexps()
-    regexps = tmp.regexps
+    regexps = await getRegexps()
   })
 </script>
 
