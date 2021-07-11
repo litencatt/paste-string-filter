@@ -22,15 +22,17 @@
 
 <Grid>
   <span slot="title">Patterns</span>
-  {#each regexps as regexp}
-    <ul>
-      <div class="inputWrap">
-        <input class="input" id="name" bind:value={regexp.name} />
-        <input class="input" id="regexp" bind:value={regexp.regexp} />
-        <div />
-      </div>
-    </ul>
-  {/each}
+  {#if regexps}
+    {#each regexps as regexp}
+      <ul>
+        <div class="inputWrap">
+          <input class="input" id="name" bind:value={regexp.name} />
+          <input class="input" id="regexp" bind:value={regexp.regexp} />
+          <div />
+        </div>
+      </ul>
+    {/each}
+  {/if}
   <div><button class="save" on:click={handleClick}>Save</button></div>
 </Grid>
 
