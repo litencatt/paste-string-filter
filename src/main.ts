@@ -1,4 +1,5 @@
 import { storage } from './storage'
+import type { Items } from './interface'
 
 chrome.storage.local.set({
   filteredStr: '(filtered)',
@@ -18,21 +19,6 @@ chrome.storage.local.set({
 chrome.storage.local.get((result) => {
   console.log(result)
 })
-
-interface Regexp {
-  regexp: string
-  enable: boolean
-}
-
-interface Regexps {
-  [index: string]: Regexp
-}
-
-interface Items {
-  enable: boolean
-  filteredStr: string
-  regexps: Regexps
-}
 
 document.addEventListener('paste', pasteStringFilter)
 
