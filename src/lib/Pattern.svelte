@@ -10,6 +10,10 @@
     return await storage.get(['regexps'])
   }
 
+  const handleClick = async (): Promise<void> => {
+    await storage.set({ regexps: regexps })
+  }
+
   let tmp: any
   let regexps: Regexp[] = []
   onMount(async () => {
@@ -29,7 +33,7 @@
       </div>
     </ul>
   {/each}
-  <div><button class="save">Save</button></div>
+  <div><button class="save" on:click={handleClick}>Save</button></div>
 </Grid>
 
 <style>
