@@ -7,6 +7,7 @@
 
   const getRegexps = async (): Promise<Regexp[]> => {
     const t = await storage.get(['regexps'])
+    // @ts-ignore
     return t.regexps
   }
 
