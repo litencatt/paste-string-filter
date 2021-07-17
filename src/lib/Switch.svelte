@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { storage } from '../storage'
-  //import { storage } from '../localStorage'
   import Grid from './Grid.svelte'
 
   const getStatus = async (): Promise<boolean> => {

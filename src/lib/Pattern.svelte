@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import Grid from './Grid.svelte'
   import { storage } from '../storage'
-  //import { storage } from '../localStorage'
   import type { Regexp } from '../interface'
 
   const getRegexps = async (): Promise<Regexp[]> => {
