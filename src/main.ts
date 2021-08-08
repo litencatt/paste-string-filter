@@ -1,13 +1,5 @@
-import { storage } from './storage'
-//import { storage } from './localStorage'
-
+import { storageWrapper } from './storageWrapper'
 import type { Items, Regexp } from './interface'
-
-// Show local storage for this chrome extension
-// @ts-ignore
-//chrome.storage.local.get((result) => {
-//  console.log(result)
-//})
 
 document.addEventListener('paste', pasteStringFilter)
 
@@ -29,7 +21,7 @@ async function pasteStringFilter(event: any) {
   }
   let paste = clipboardData.getData('text')
   // @ts-ignore
-  const items = (await storage.get(['enable', 'filteredStr', 'regexps'])) as Items
+  const items = (await storageWrapper.get(['enable', 'filteredStr', 'regexps'])) as Items
   if (!items.hasOwnProperty('enable')) {
     console.log('enable is not set.')
     return
