@@ -1,24 +1,43 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { storage } from '../storage'
+  //import { storage } from '../localStorage'
+
   import type { Regexp } from '../interface'
 
-  const getRegexps = async (): Promise<Regexp[]> => {
-    const t = await storage.get(['regexps'])
-    // @ts-ignore
-    return t.regexps
+  const defaultFilteredString = '(filtered)'
+  const defaultRegExp = [
+    {
+      name: 'mail',
+      regexp: '[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+',
+      enable: true,
+    },
+  ]
+
+  const getItems = async (): Promise<any> => {
+    return await storage.get(['filteredStr', 'regexps'])
   }
 
   const handleClick = async (): Promise<void> => {
-    await storage.set({ regexps: regexps })
+    await storage.set({
+      regexps: regexps,
+      filteredStr: filteredStr,
+    })
   }
 
   let regexps: Regexp[]
+  let filteredStr: string
   onMount(async () => {
-    regexps = await getRegexps()
+    const items = await getItems()
+    filteredStr = items.filteredStr || defaultFilteredString
+    regexps = items.regexps || defaultRegExp
   })
 </script>
 
+<div class="container my-1">
+  <span class="title text-base m-1">Filtered string</span><br />
+  <input class="px-2 py-1 border border-gray-300 rounded" id="filtered" bind:value={filteredStr} />
+</div>
 <div class="container">
   <span class="title text-base m-1">Patterns</span>
   <table class="table-fixed">

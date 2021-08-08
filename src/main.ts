@@ -3,22 +3,6 @@ import { storage } from './storage'
 
 import type { Items, Regexp } from './interface'
 
-storage.set({
-  filteredStr: '(filtered)',
-  regexps: [
-    {
-      name: 'mail',
-      regexp: '[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+',
-      enable: true,
-    },
-    {
-      name: 'password',
-      regexp: 'password:.*',
-      enable: true,
-    },
-  ],
-})
-
 // Show local storage for this chrome extension
 // @ts-ignore
 //chrome.storage.local.get((result) => {
@@ -58,7 +42,7 @@ async function pasteStringFilter(event: any) {
   }
 
   const filteredStr = items['filteredStr']
-  items['regexps'].forEach((item : Regexp) => {
+  items['regexps'].forEach((item: Regexp) => {
     let regexp = new RegExp(item.regexp, 'g')
     paste = paste.replace(regexp, filteredStr)
   })
