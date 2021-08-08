@@ -43,6 +43,9 @@ async function pasteStringFilter(event: any) {
 
   const filteredStr = items['filteredStr']
   items['regexps'].forEach((item: Regexp) => {
+    if (item.regexp == '') {
+      return
+    }
     let regexp = new RegExp(item.regexp, 'g')
     paste = paste.replace(regexp, filteredStr)
   })
