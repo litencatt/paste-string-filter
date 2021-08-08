@@ -27,11 +27,23 @@
     const emptyRow = { name: '', regexp: '', enable: true }
     regexps.push(emptyRow)
     await storageWrapper.set({ regexps: regexps })
+    reloadPopup()
   }
 
   const delClick = async (index: number): Promise<void> => {
     regexps.splice(index, 1)
     await storageWrapper.set({ regexps: regexps })
+    reloadPopup()
+  }
+
+  const reloadPopup = function () {
+    let reloadURL: string
+    if (window.location.href.includes('localhost')) {
+      reloadURL = 'http://localhost:3000/dist/'
+    } else {
+      reloadURL = chrome.runtime.getURL('dist/index.html')
+    }
+    window.location.href = reloadURL
   }
 
   let regexps: Regexp[]
