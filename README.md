@@ -1,14 +1,16 @@
-## インストール方法
-1. `$ git clone https://github.com/litencatt/paste-string-filter.git`
-1. `chrome://extensions` を開く
-1. ディベロッパーモードをONにする
-1. `パッケージ化されていない拡張機能を読み込み`を押してcloneしたディレクトリを選ぶ
-
 ## 使い方
-![image](https://user-images.githubusercontent.com/17349045/124388534-58974c80-dd1e-11eb-994c-2f190d9ef473.png)
+<div align="left">
+  <img src="https://user-images.githubusercontent.com/17349045/128621544-76021af7-28ac-495e-98f4-78c228db40af.png">
+</div>
 
-- Enableに設定するとメールアドレスを表す文字列をテキストエリアにペーストした際に`(filtered)`に置き換えます
-- Disableにすると置き換えません
-- 正規表現は現時点ではまだ固定のもののみで変更できません
+- 置き換えたい文字列のパターンを`Patterns`に正規表現で設定してください
 
-![past-text-filter](https://user-images.githubusercontent.com/17349045/124388973-24bd2680-dd20-11eb-9040-ab9d8a84d913.gif)
+- :ballot_box_with_check: Enableを設定すると文字列をテキストエリアにペーストした際に`(filtered)`に置き換えます
+
+- 置き換え後の文字列は`Filtered string`のフォームにて自由に変更可能
+
+## 動作例
+以下はPatternsにメールアドレスの正規表現を設定した場合の動作例
+<div align="left">
+  <img src="https://user-images.githubusercontent.com/17349045/124388973-24bd2680-dd20-11eb-9040-ab9d8a84d913.gif">
+</div>
