@@ -1,4 +1,4 @@
-import { cStorage } from './storage'
+import { cStorage } from './chromeStorage'
 import { lStorage } from './localStorage'
 
 function getStorageObject() {
