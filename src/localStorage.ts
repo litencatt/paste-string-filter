@@ -1,7 +1,7 @@
-export const storage = {
-  get: async (keys: string[]|null) => {
+export const lStorage = {
+  get: async (keys: string[] | null) => {
     return Promise.resolve().then(() => {
-      let items : any = {}
+      let items: any = {}
       if (keys == null) {
         Object.keys(localStorage).forEach((key) => {
           items[key] = localStorage.getItem(key)
@@ -24,8 +24,8 @@ export const storage = {
   set: async (items: any) => {
     return Promise.resolve().then(() => {
       Object.keys(items).forEach((key) => {
-        localStorage.setItem(key, JSON.stringify(items[key]));
+        localStorage.setItem(key, JSON.stringify(items[key]))
       })
     })
-  }
+  },
 }
