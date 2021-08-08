@@ -3,22 +3,6 @@ import { storage } from './storage'
 
 import type { Items, Regexp } from './interface'
 
-storage.set({
-  filteredStr: '(filtered)',
-  regexps: [
-    {
-      name: 'mail',
-      regexp: '[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+',
-      enable: true,
-    },
-    {
-      name: 'password',
-      regexp: 'password:.*',
-      enable: true,
-    },
-  ],
-})
-
 // Show local storage for this chrome extension
 // @ts-ignore
 //chrome.storage.local.get((result) => {

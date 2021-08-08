@@ -3,6 +3,15 @@
   import { storage } from '../storage'
   import type { Regexp } from '../interface'
 
+  const defaultFilteredString = '(filtered)'
+  const defaultRegExp = [
+    {
+      name: 'mail',
+      regexp: '[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+',
+      enable: true,
+    },
+  ]
+
   const getItems = async (): Promise<any> => {
     return await storage.get(['filteredStr', 'regexps'])
   }
@@ -18,8 +27,8 @@
   let filteredStr: string
   onMount(async () => {
     const items = await getItems()
-    filteredStr = items.filteredStr
-    regexps = items.regexps
+    filteredStr = items.filteredStr || defaultFilteredString
+    regexps = items.regexps || defaultRegExp
   })
 </script>
 
