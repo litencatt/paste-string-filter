@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { storage } from '../storage'
-  //import { storage } from '../localStorage'
-
+  import { storageWrapper } from '../storageWrapper'
   import type { Regexp } from '../interface'
 
   const defaultFilteredString = '(filtered)'
@@ -15,11 +13,11 @@
   ]
 
   const getItems = async (): Promise<any> => {
-    return await storage.get(['filteredStr', 'regexps'])
+    return await storageWrapper.get(['filteredStr', 'regexps'])
   }
 
   const handleClick = async (): Promise<void> => {
-    await storage.set({
+    await storageWrapper.set({
       regexps: regexps,
       filteredStr: filteredStr,
     })

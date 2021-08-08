@@ -1,17 +1,16 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { storage } from '../storage'
-  //import { storage } from '../localStorage'
+  import { storageWrapper } from '../storageWrapper'
 
   import Grid from './Grid.svelte'
 
   const getStatus = async (): Promise<boolean> => {
     // @ts-ignore
-    return (await storage.get(['enable'])).enable
+    return (await storageWrapper.get(['enable'])).enable
   }
 
   const setStatus = async (enable: boolean) => {
-    storage.set({ enable })
+    storageWrapper.set({ enable })
   }
 
   const onChange: svelte.JSX.FormEventHandler<HTMLInputElement> = async (e) => {
