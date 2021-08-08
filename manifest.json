@@ -5,6 +5,7 @@
   "description": "Filter pasting string with your Regexps.",
   "permissions": ["storage"],
   "action": {
+    "default_icon": "icon.png",
     "default_popup": "dist/index.html"
   },
   "content_scripts": [
