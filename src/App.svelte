@@ -19,7 +19,7 @@
 
   :global(body) {
     color: #455a64;
-    width: 400px;
+    width: 460px;
     padding: 10px;
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif,
