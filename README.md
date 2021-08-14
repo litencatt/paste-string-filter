@@ -1,3 +1,6 @@
+## Chrome Web Storeリンク
+https://chrome.google.com/webstore/detail/paste-string-filter/dgnlgeoifbndkmdmfkemgbobophlpgjk
+
 ## 使い方
 <div align="left">
   <img src="https://user-images.githubusercontent.com/17349045/128621544-76021af7-28ac-495e-98f4-78c228db40af.png">
