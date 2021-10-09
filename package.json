@@ -7,7 +7,7 @@
     "dev": "vite",
     "watch": "vite build --watch",
     "build": "vite build && zip -r psf.zip ./ -x psf/\\* node_modules/\\* .git/\\* .vscode/\\* .* *.zip src/\\* *config.js *.log .DS_Store",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "svelte-check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "repository": "git@github.com:litencatt/paste-string-filter.git",
   "author": "litencatt <ncl0709@gmail.com>",
@@ -22,7 +22,7 @@
     "postcss": "^8.3.5",
     "prettier": "^2.3.2",
     "svelte": "^3.38.3",
-    "svelte-check": "^2.2.0",
+    "svelte-check": "^2.2.7",
     "svelte-preprocess": "^4.7.3",
     "tailwindcss": "^2.2.4",
     "tslib": "^2.3.0",
