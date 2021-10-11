@@ -20,7 +20,6 @@ async function pasteStringFilter(event: any) {
     return false
   }
   let paste = clipboardData.getData('text')
-  // @ts-ignore
   const items = (await storageWrapper.get(['enable', 'filteredStr', 'regexps'])) as Items
   if (!items.hasOwnProperty('enable')) {
     console.log('enable is not set.')
