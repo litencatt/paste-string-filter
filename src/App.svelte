@@ -1,5 +1,4 @@
 <script lang="ts">
-  import './lib/Tailwind.svelte'
   import Pattern from './lib/Pattern.svelte'
   import Switch from './lib/Switch.svelte'
 </script>
