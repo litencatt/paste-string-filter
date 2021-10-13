@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import { onMount, onDestroy, afterUpdate } from 'svelte'
   import { storageWrapper } from '../storageWrapper'
+  import Layout from './Layout.svelte'
 
-  import Grid from './Grid.svelte'
+  let status = false
 
   const getStatus = async (): Promise<boolean> => {
     // @ts-ignore
@@ -10,24 +11,23 @@
   }
 
   const setStatus = async (enable: boolean) => {
-    storageWrapper.set({ enable })
+    await storageWrapper.set({ enable })
+    status = enable
   }
 
-  const onChange: svelte.JSX.FormEventHandler<HTMLInputElement> = async (e) => {
-    const checked = e.currentTarget.checked
-    await setStatus(checked)
-    status = await getStatus()
+  const onChange = async () => {
+    await setStatus(status)
   }
 
-  let status: boolean
   onMount(async () => {
     status = await getStatus()
   })
 </script>
 
-<Grid>
-  <span slot="title">Feature</span>
+<Layout>
+  <span slot="title">📝 Paste String Filter</span>
   <label>
-    <input checked={status} on:change={onChange} type="checkbox" name="status" value="enabled" /> Enabled
+    <input bind:checked={status} on:change={onChange} type="checkbox" name="status" />
+    {status ? 'ON' : 'OFF'}
   </label>
-</Grid>
+</Layout>

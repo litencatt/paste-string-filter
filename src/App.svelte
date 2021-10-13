@@ -4,7 +4,6 @@
 </script>
 
 <main>
-  <h1 class="title">📝 Paste string filter</h1>
   <div class="mb-1"><Switch /></div>
   <div><Pattern /></div>
 </main>
