@@ -24,14 +24,6 @@
       'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   }
 
-  .title {
-    font-weight: 500;
-    font-size: 1rem;
-    padding: 0 0 0.5rem 0;
-    margin-bottom: 0.5rem;
-    border-bottom: solid 1px #cfd8dc;
-  }
-
   .mb-1 {
     margin-bottom: 1rem;
   }

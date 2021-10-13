@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, onDestroy, afterUpdate } from 'svelte'
+  import { onMount } from 'svelte'
   import { storageWrapper } from '../storageWrapper'
   import Layout from './Layout.svelte'
 
@@ -7,7 +7,8 @@
 
   const getStatus = async (): Promise<boolean> => {
     // @ts-ignore
-    return (await storageWrapper.get(['enable'])).enable
+    const res = (await storageWrapper.get(['enable'])).enable
+    return res === 'true'
   }
 
   const setStatus = async (enable: boolean) => {
