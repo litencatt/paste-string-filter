@@ -56,7 +56,7 @@
 </script>
 
 <div class="container my-1">
-  <span class="title text-base m-1">Filtered string</span><br />
+  <span class="title text-base m-1">Filtered word</span><br />
   <input class="px-2 py-1 border border-gray-300 rounded" id="filtered" bind:value={filteredStr} />
 </div>
 <div class="container">
@@ -64,7 +64,7 @@
   <table class="table-fixed">
     <thead>
       <tr>
-        <th class="border border-gray-300 text-left px-2">Name</th>
+        <th class="border border-gray-300 text-left px-2">Target</th>
         <th class="border border-gray-300 text-left px-2">Regexp</th>
         <th class="border border-gray-300 text-left px-2" />
       </tr>
@@ -84,7 +84,7 @@
                 class="px-2 py-1 bg-red-400 text-white rounded hover:bg-red-500"
                 on:click|preventDefault={() => delClick(i)}
               >
-                Delete
+                DELETE
               </button>
             </td>
           </tr>
@@ -92,8 +92,8 @@
       {/if}
     </tbody>
   </table>
-  <button class="px-2 py-1 bg-blue-400 text-white rounded hover:bg-blue-500" on:click={addClick}> Add </button>
+  <button class="px-2 py-1 bg-blue-400 text-white rounded hover:bg-blue-500" on:click={addClick}> ADD </button>
   <div class="my-1 item-right ">
-    <button class="px-2 py-1 bg-blue-400 text-white rounded hover:bg-blue-500" on:click={handleClick}> Save </button>
+    <button class="px-2 py-1 bg-blue-400 text-white rounded hover:bg-blue-500" on:click={handleClick}> SAVE </button>
   </div>
 </div>
