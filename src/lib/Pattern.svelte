@@ -2,6 +2,7 @@
   import { onMount } from 'svelte'
   import { storageWrapper } from '../storageWrapper'
   import type { Regexp } from '../interface'
+  import { input, delete_button, add_button, save_button } from './style'
 
   const defaultFilteredString = '(filtered)'
   const defaultRegExp = [
@@ -57,7 +58,7 @@
 
 <div class="container my-1">
   <span class="title text-base m-1">Filtered word</span><br />
-  <input class="px-2 py-1 border border-gray-300 rounded" id="filtered" bind:value={filteredStr} />
+  <input class={input} id="filtered" bind:value={filteredStr} />
 </div>
 <div class="container">
   <span class="title text-base m-1">Patterns</span>
@@ -74,26 +75,21 @@
         {#each regexps as regexp, i}
           <tr>
             <td class="border border-gray-300	px-2 py-1">
-              <input class="px-2 py-1 border border-gray-300	rounded" id="name" bind:value={regexp.name} />
+              <input class={input} id="name" bind:value={regexp.name} />
             </td>
             <td class="border border-gray-300	px-2 py-1">
-              <input class="px-2 py-1 border border-gray-300	rounded" id="regexp" bind:value={regexp.regexp} />
+              <input class={input} id="regexp" bind:value={regexp.regexp} />
             </td>
             <td class="border border-gray-300	px-2 py-1">
-              <button
-                class="px-2 py-1 bg-red-400 text-white rounded hover:bg-red-500"
-                on:click|preventDefault={() => delClick(i)}
-              >
-                DELETE
-              </button>
+              <button class={delete_button} on:click|preventDefault={() => delClick(i)}> DELETE </button>
             </td>
           </tr>
         {/each}
       {/if}
     </tbody>
   </table>
-  <button class="px-2 py-1 bg-blue-400 text-white rounded hover:bg-blue-500" on:click={addClick}> ADD </button>
+  <button class={add_button} on:click={addClick}> ADD </button>
   <div class="my-1 item-right ">
-    <button class="px-2 py-1 bg-blue-400 text-white rounded hover:bg-blue-500" on:click={handleClick}> SAVE </button>
+    <button class={save_button} on:click={handleClick}> SAVE </button>
   </div>
 </div>
