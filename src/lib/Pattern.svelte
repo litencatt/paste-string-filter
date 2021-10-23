@@ -2,7 +2,16 @@
   import { onMount } from 'svelte'
   import { storageWrapper } from '../storageWrapper'
   import type { Combination } from '../interface'
-  import { input, deleteButton, addButton, saveButton, gridContainer, gridItem } from './style'
+  import {
+    input,
+    deleteButton,
+    addButton,
+    saveButton,
+    gridContainer,
+    gridItem,
+    flexContainer,
+    ContentArea,
+  } from './style'
 
   let combinations: Combination[]
   let filteredStr: string
@@ -54,8 +63,10 @@
   })
 </script>
 
-<p>Filtered word</p>
-<input class={input} id="filtered" bind:value={filteredStr} />
+<div class={ContentArea}>
+  <p>Filtered word</p>
+  <input class={input} id="filtered" bind:value={filteredStr} />
+</div>
 <div class={gridContainer}>
   <div class={gridItem}>Name</div>
   <div class={gridItem}>Regexp</div>
@@ -72,5 +83,7 @@
     </div>
   {/each}
 {/if}
-<button type="button" class={addButton} on:click|preventDefault={addClick}>ADD</button>
-<button type="button" class={saveButton} on:click|preventDefault={handleSave}>SAVE</button>
+<div class={flexContainer}>
+  <button type="button" class={saveButton} on:click|preventDefault={handleSave}>SAVE</button>
+  <button type="button" class={addButton} on:click|preventDefault={addClick}>ADD</button>
+</div>

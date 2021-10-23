@@ -2,6 +2,7 @@
   import { onMount } from 'svelte'
   import { storageWrapper } from '../storageWrapper'
   import Layout from './Layout.svelte'
+  import { input, ContentArea } from './style'
 
   let status = false
 
@@ -27,8 +28,10 @@
 
 <Layout>
   <span slot="title">📝 Paste String Filter</span>
-  <label>
-    <input bind:checked={status} on:change={onChange} type="checkbox" name="status" />
-    {status ? 'ON' : 'OFF'}
-  </label>
+  <div class={ContentArea}>
+    <label>
+      <input class={input} type="checkbox" name="status" bind:checked={status} on:change={onChange} />
+      {status ? 'Enable' : 'Disable'}
+    </label>
+  </div>
 </Layout>

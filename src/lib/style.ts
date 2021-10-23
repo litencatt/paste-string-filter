@@ -13,6 +13,7 @@ export const deleteButton = css`
   background-color: #80032D;
   border: none;
   letter-spacing: 0.12rem;
+  width: 6rem;
 `
 export const addButton = css`
   border-radius: 0.1rem;
@@ -21,6 +22,7 @@ export const addButton = css`
   background-color: #034780;
   border: none;
   letter-spacing: 0.12rem;
+  width: 6rem;
 `
 export const saveButton = css`
   border-radius: 0.1rem;
@@ -29,6 +31,8 @@ export const saveButton = css`
   background-color: #270380;
   border: none;
   letter-spacing: 0.12rem;
+  margin-right: .5rem;
+    width: 6rem;
 `
 
 export const gridContainer = css`
@@ -39,4 +43,16 @@ export const gridContainer = css`
 
 export const gridItem = css`
   margin: 0.25rem 0.5rem 0.25rem 0;
+`
+
+export const flexContainer = css`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1.5rem;
+  margin-top: 2rem;
+`
+export const ContentArea = css`
+  margin: 1.5rem 0;
 `
