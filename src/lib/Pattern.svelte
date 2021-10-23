@@ -1,11 +1,14 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { storageWrapper } from '../storageWrapper'
-  import type { Regexp } from '../interface'
-  import { input, delete_button, add_button, save_button } from './style'
+  import type { Combination } from '../interface'
+  import { input, delete_button, add_button } from './style'
+
+  let combinations: Combination[]
+  let filteredStr: string
 
   const defaultFilteredString = '(filtered)'
-  const defaultRegExp = [
+  const defaultCombination = [
     {
       name: 'mail',
       regexp: '[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+',
@@ -14,26 +17,26 @@
   ]
 
   const getItems = async (): Promise<any> => {
-    return await storageWrapper.get(['filteredStr', 'regexps'])
+    return await storageWrapper.get(['filteredStr', 'combinations'])
   }
 
   const handleClick = async (): Promise<void> => {
     await storageWrapper.set({
-      regexps: regexps,
+      combinations: combinations,
       filteredStr: filteredStr,
     })
   }
 
   const addClick = async (): Promise<void> => {
     const emptyRow = { name: '', regexp: '', enable: true }
-    regexps.push(emptyRow)
-    await storageWrapper.set({ regexps: regexps })
+    combinations.push(emptyRow)
+    await storageWrapper.set({ combinations: combinations })
     reloadPopup()
   }
 
   const delClick = async (index: number): Promise<void> => {
-    regexps.splice(index, 1)
-    await storageWrapper.set({ regexps: regexps })
+    combinations.splice(index, 1)
+    await storageWrapper.set({ combinations: combinations })
     reloadPopup()
   }
 
@@ -47,12 +50,10 @@
     window.location.href = reloadURL
   }
 
-  let regexps: Regexp[]
-  let filteredStr: string
   onMount(async () => {
     const items = await getItems()
     filteredStr = items.filteredStr || defaultFilteredString
-    regexps = items.regexps || defaultRegExp
+    combinations = items.combinations || defaultCombination
   })
 </script>
 
@@ -70,22 +71,22 @@
       </tr>
     </thead>
     <tbody>
-      {#if regexps}
-        {#each regexps as regexp, i}
+      {#if combinations}
+        {#each combinations as c, i}
           <tr>
             <td>
-              <input class={input} id="name" bind:value={regexp.name} />
+              <input class={input} id="name" bind:value={c.name} />
             </td>
             <td>
-              <input class={input} id="regexp" bind:value={regexp.regexp} />
+              <input class={input} id="regexp" bind:value={c.regexp} />
             </td>
             <td>
-              <button class={delete_button} on:click|preventDefault={() => delClick(i)}> DELETE </button>
+              <button type="button" class={delete_button} on:click|preventDefault={() => delClick(i)}> DELETE </button>
             </td>
           </tr>
         {/each}
       {/if}
     </tbody>
   </table>
-  <button class={add_button} on:click={addClick}>ADD</button>
+  <button type="button" class={add_button} on:click={addClick}>ADD</button>
 </div>

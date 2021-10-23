@@ -1,4 +1,4 @@
-export interface Regexp {
+export interface Combination {
   name: string
   regexp: string
   enable: boolean
@@ -7,5 +7,5 @@ export interface Regexp {
 export interface Items {
   enable: boolean
   filteredStr: string
-  regexps: Regexp[]
+  combinations: Combination[]
 }

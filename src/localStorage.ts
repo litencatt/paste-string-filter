@@ -8,7 +8,7 @@ export const lStorage = {
         })
       } else {
         keys.forEach((key) => {
-          if (key === 'regexps') {
+          if (key === 'combinations') {
             let tmp = localStorage.getItem(key)
             if (tmp != null) {
               items[key] = JSON.parse(tmp)
