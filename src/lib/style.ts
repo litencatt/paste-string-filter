@@ -1,7 +1,7 @@
 import { css } from '@emotion/css'
 
 export const input = css`
-  border-radius: 0.7rem;
+  border-radius: 0.1rem;
   padding: 0.2rem 0.2rem;
   border: 0.01rem solid;
   margin: 0.25rem 0.5rem 0.25rem 0;

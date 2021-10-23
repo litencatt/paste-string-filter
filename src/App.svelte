@@ -4,8 +4,8 @@
 </script>
 
 <main>
-  <div class="mb-1"><Switch /></div>
-  <div><Pattern /></div>
+  <Switch />
+  <Pattern />
 </main>
 
 <style>
@@ -22,9 +22,5 @@
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif,
       'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  }
-
-  .mb-1 {
-    margin-bottom: 1rem;
   }
 </style>

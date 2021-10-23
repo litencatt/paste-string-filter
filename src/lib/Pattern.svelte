@@ -56,31 +56,30 @@
   })
 </script>
 
-<div class="container my-1">
-  <span class="title text-base m-1">Filtered word</span><br />
+<div>
+  <span>Filtered word</span><br />
   <input class={input} id="filtered" bind:value={filteredStr} />
 </div>
-<div class="container">
-  <span class="title text-base m-1">Patterns</span>
-  <table class="table-fixed">
+<div>
+  <table>
     <thead>
       <tr>
-        <th class="border border-gray-300 text-left px-2">Target</th>
-        <th class="border border-gray-300 text-left px-2">Regexp</th>
-        <th class="border border-gray-300 text-left px-2" />
+        <th>Title</th>
+        <th>Regexp</th>
+        <th />
       </tr>
     </thead>
     <tbody>
       {#if regexps}
         {#each regexps as regexp, i}
           <tr>
-            <td class="border border-gray-300	px-2 py-1">
+            <td>
               <input class={input} id="name" bind:value={regexp.name} />
             </td>
-            <td class="border border-gray-300	px-2 py-1">
+            <td>
               <input class={input} id="regexp" bind:value={regexp.regexp} />
             </td>
-            <td class="border border-gray-300	px-2 py-1">
+            <td>
               <button class={delete_button} on:click|preventDefault={() => delClick(i)}> DELETE </button>
             </td>
           </tr>
@@ -88,8 +87,5 @@
       {/if}
     </tbody>
   </table>
-  <button class={add_button} on:click={addClick}> ADD </button>
-  <div class="my-1 item-right ">
-    <button class={save_button} on:click={handleClick}> SAVE </button>
-  </div>
+  <button class={add_button} on:click={addClick}>ADD</button>
 </div>
