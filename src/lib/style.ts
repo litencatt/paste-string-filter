@@ -7,7 +7,7 @@ export const input = css`
   margin: 0.25rem 0.5rem 0.25rem 0;
 `
 
-export const delete_button = css`
+export const deleteButton = css`
   border-radius: 0.1rem;
   padding: 0.2rem 1rem;
   color: white;
@@ -15,7 +15,7 @@ export const delete_button = css`
   border: none;
   letter-spacing: 0.12rem;
 `
-export const add_button = css`
+export const addButton = css`
   border-radius: 0.1rem;
   padding: 0.2rem 1rem;
   color: white;
@@ -23,7 +23,7 @@ export const add_button = css`
   border: none;
   letter-spacing: 0.12rem;
 `
-export const save_button = css`
+export const saveButton = css`
   border-radius: 0.1rem;
   padding: 0.2rem 1rem;
   color: white;

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte'
   import { storageWrapper } from '../storageWrapper'
   import type { Combination } from '../interface'
-  import { input, delete_button, add_button } from './style'
+  import { input, deleteButton, addButton } from './style'
 
   let combinations: Combination[]
   let filteredStr: string
@@ -22,13 +22,13 @@
 
   const handleClick = async (): Promise<void> => {
     await storageWrapper.set({
-      combinations: combinations,
-      filteredStr: filteredStr,
+      combinations,
+      filteredStr,
     })
   }
 
   const addClick = async (): Promise<void> => {
-    const emptyRow = { name: '', regexp: '', enable: true }
+    const emptyRow: Combination = { name: '', regexp: '', enable: true }
     combinations.push(emptyRow)
     await storageWrapper.set({ combinations: combinations })
     reloadPopup()
@@ -41,12 +41,9 @@
   }
 
   const reloadPopup = function () {
-    let reloadURL: string
-    if (window.location.href.includes('localhost')) {
-      reloadURL = 'http://localhost:3000/dist/'
-    } else {
-      reloadURL = chrome.runtime.getURL('dist/index.html')
-    }
+    const reloadURL = window.location.href.includes('localhost')
+      ? 'http://localhost:3000/dist/'
+      : chrome.runtime.getURL('dist/index.html')
     window.location.href = reloadURL
   }
 
@@ -81,12 +78,12 @@
               <input class={input} id="regexp" bind:value={c.regexp} />
             </td>
             <td>
-              <button type="button" class={delete_button} on:click|preventDefault={() => delClick(i)}> DELETE </button>
+              <button type="button" class={deleteButton} on:click|preventDefault={() => delClick(i)}>DELETE</button>
             </td>
           </tr>
         {/each}
       {/if}
     </tbody>
   </table>
-  <button type="button" class={add_button} on:click={addClick}>ADD</button>
+  <button type="button" class={addButton} on:click={addClick}>ADD</button>
 </div>
