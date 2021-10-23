@@ -2,13 +2,13 @@
   import { onMount } from 'svelte'
   import { storageWrapper } from '../storageWrapper'
   import type { Combination } from '../interface'
-  import { input, deleteButton, addButton } from './style'
+  import { input, deleteButton, addButton, saveButton, gridContainer, gridItem } from './style'
 
   let combinations: Combination[]
   let filteredStr: string
 
   const defaultFilteredString = '(filtered)'
-  const defaultCombination = [
+  const defaultCombination: Combination[] = [
     {
       name: 'mail',
       regexp: '[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+',
@@ -20,7 +20,7 @@
     return await storageWrapper.get(['filteredStr', 'combinations'])
   }
 
-  const handleClick = async (): Promise<void> => {
+  const handleSave = async (): Promise<void> => {
     await storageWrapper.set({
       combinations,
       filteredStr,
@@ -54,36 +54,23 @@
   })
 </script>
 
-<div>
-  <span>Filtered word</span><br />
-  <input class={input} id="filtered" bind:value={filteredStr} />
+<p>Filtered word</p>
+<input class={input} id="filtered" bind:value={filteredStr} />
+<div class={gridContainer}>
+  <div class={gridItem}>Name</div>
+  <div class={gridItem}>Regexp</div>
+  <div class={gridItem} />
 </div>
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Regexp</th>
-        <th />
-      </tr>
-    </thead>
-    <tbody>
-      {#if combinations}
-        {#each combinations as c, i}
-          <tr>
-            <td>
-              <input class={input} id="name" bind:value={c.name} />
-            </td>
-            <td>
-              <input class={input} id="regexp" bind:value={c.regexp} />
-            </td>
-            <td>
-              <button type="button" class={deleteButton} on:click|preventDefault={() => delClick(i)}>DELETE</button>
-            </td>
-          </tr>
-        {/each}
-      {/if}
-    </tbody>
-  </table>
-  <button type="button" class={addButton} on:click={addClick}>ADD</button>
-</div>
+{#if combinations}
+  {#each combinations as c, i}
+    <div class={gridContainer}>
+      <div class={gridItem}><input class={input} id="name" bind:value={c.name} /></div>
+      <div class={gridItem}><input class={input} id="regexp" bind:value={c.regexp} /></div>
+      <div class={gridItem}>
+        <button type="button" class={deleteButton} on:click|preventDefault={() => delClick(i)}>DELETE</button>
+      </div>
+    </div>
+  {/each}
+{/if}
+<button type="button" class={addButton} on:click|preventDefault={addClick}>ADD</button>
+<button type="button" class={saveButton} on:click|preventDefault={handleSave}>SAVE</button>
