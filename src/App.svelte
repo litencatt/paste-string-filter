@@ -1,10 +1,8 @@
 <script lang="ts">
   import Pattern from './lib/Pattern.svelte'
-  import Switch from './lib/Switch.svelte'
 </script>
 
 <main>
-  <Switch />
   <Pattern />
 </main>
 

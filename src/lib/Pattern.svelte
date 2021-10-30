@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
+  import Layout from './Layout.svelte'
   import { storageWrapper } from '../storageWrapper'
   import type { Combination } from '../interface'
   import {
@@ -63,27 +64,30 @@
   })
 </script>
 
-<div class={ContentArea}>
-  <p>Filtered word</p>
-  <input class={input} id="filtered" bind:value={filteredStr} />
-</div>
-<div class={gridContainer}>
-  <div class={gridItem}>Name</div>
-  <div class={gridItem}>Regexp</div>
-  <div class={gridItem} />
-</div>
-{#if combinations}
-  {#each combinations as c, i}
-    <div class={gridContainer}>
-      <div class={gridItem}><input class={input} id="name" bind:value={c.name} /></div>
-      <div class={gridItem}><input class={input} id="regexp" bind:value={c.regexp} /></div>
-      <div class={gridItem}>
-        <button type="button" class={deleteButton} on:click|preventDefault={() => delClick(i)}>DELETE</button>
+<Layout>
+  <span slot="title">📝 Paste String Filter</span>
+  <div class={ContentArea}>
+    <p>Filtered word</p>
+    <input class={input} id="filtered" bind:value={filteredStr} />
+  </div>
+  <div class={gridContainer}>
+    <div class={gridItem}>Name</div>
+    <div class={gridItem}>Regexp</div>
+    <div class={gridItem} />
+  </div>
+  {#if combinations}
+    {#each combinations as c, i}
+      <div class={gridContainer}>
+        <div class={gridItem}><input class={input} id="name" bind:value={c.name} /></div>
+        <div class={gridItem}><input class={input} id="regexp" bind:value={c.regexp} /></div>
+        <div class={gridItem}>
+          <button type="button" class={deleteButton} on:click|preventDefault={() => delClick(i)}>DELETE</button>
+        </div>
       </div>
-    </div>
-  {/each}
-{/if}
-<div class={flexContainer}>
-  <button type="button" class={saveButton} on:click|preventDefault={handleSave}>SAVE</button>
-  <button type="button" class={addButton} on:click|preventDefault={addClick}>ADD</button>
-</div>
+    {/each}
+  {/if}
+  <div class={flexContainer}>
+    <button type="button" class={saveButton} on:click|preventDefault={handleSave}>SAVE</button>
+    <button type="button" class={addButton} on:click|preventDefault={addClick}>ADD</button>
+  </div>
+</Layout>
