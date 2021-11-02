@@ -20,15 +20,11 @@ async function pasteStringFilter(event: any) {
     return false
   }
   let paste = clipboardData.getData('text')
-  const items = (await storageWrapper.get(['enable', 'filteredStr', 'combinations'])) as Items
-  if (!items.hasOwnProperty('enable')) {
-    console.log('enable is not set.')
-    return
-  }
+  const items = (await storageWrapper.get(['filteredStr', 'combinations'])) as Items
 
   const filteredStr = items['filteredStr']
   items['combinations'].forEach((c: Combination) => {
-    if (c.regexp == '') {
+    if (c.regexp == '' || !c.enable) {
       return
     }
     let regexp = new RegExp(c.regexp, 'g')

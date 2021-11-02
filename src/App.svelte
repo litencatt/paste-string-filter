@@ -16,7 +16,7 @@
   :global(body) {
     background-color: #f5f5f5;
     color: #808080;
-    width: 460px;
+    width: 550px;
     padding: 10px;
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif,

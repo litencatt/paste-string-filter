@@ -29,7 +29,7 @@ import{s as U}from"./storageWrapper.js";import{S as M,i as V,s as Z,c as ee,e as
     width: 6rem;
 `,ae=F`
   display: grid;
-  grid-template-columns: 10rem 10rem 10rem;
+  grid-template-columns: 5rem 10rem 10rem 10rem;
   margin-bottom: .5rem;
 `,I=F`
   margin: 0.25rem 0.5rem 0.25rem 0;

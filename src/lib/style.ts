@@ -37,7 +37,7 @@ export const saveButton = css`
 
 export const gridContainer = css`
   display: grid;
-  grid-template-columns: 10rem 10rem 10rem;
+  grid-template-columns: 5rem 10rem 10rem 10rem;
   margin-bottom: .5rem;
 `
 
