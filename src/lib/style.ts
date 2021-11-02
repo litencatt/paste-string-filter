@@ -14,6 +14,7 @@ export const deleteButton = css`
   border: none;
   letter-spacing: 0.12rem;
   width: 6rem;
+  cursor: pointer;
 `
 export const addButton = css`
   border-radius: 0.1rem;
@@ -23,6 +24,7 @@ export const addButton = css`
   border: none;
   letter-spacing: 0.12rem;
   width: 6rem;
+  cursor: pointer;
 `
 export const saveButton = css`
   border-radius: 0.1rem;
@@ -32,7 +34,8 @@ export const saveButton = css`
   border: none;
   letter-spacing: 0.12rem;
   margin-right: .5rem;
-    width: 6rem;
+  width: 6rem;
+  cursor: pointer;
 `
 
 export const gridContainer = css`
