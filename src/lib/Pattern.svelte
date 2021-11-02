@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import Layout from './Layout.svelte'
+  import Switch from './Switch.svelte'
   import { storageWrapper } from '../storageWrapper'
   import type { Combination } from '../interface'
   import {
@@ -58,7 +59,7 @@
   }
 
   const handleChange = async (enable: boolean, index: number) => {
-    combinations[index].enable = !enable
+    combinations[index].enable = enable
     await storageWrapper.set({ combinations })
   }
 
@@ -85,7 +86,7 @@
     {#each combinations as c, i}
       <div class={gridContainer}>
         <div class={gridItem}>
-          <input class={input} type="checkbox" name="status" checked={c.enable} on:change={handleChange(c.enable, i)} />
+          <Switch index={i} combination={c} handler={handleChange} />
         </div>
         <div class={gridItem}><input class={input} id="name" bind:value={c.name} /></div>
         <div class={gridItem}><input class={input} id="regexp" bind:value={c.regexp} /></div>
