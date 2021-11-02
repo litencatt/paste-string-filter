@@ -26,12 +26,6 @@ async function pasteStringFilter(event: any) {
     return
   }
 
-  const enable = items['enable']
-  if (!enable) {
-    console.log('Filter is disable now.')
-    return
-  }
-
   const filteredStr = items['filteredStr']
   items['combinations'].forEach((c: Combination) => {
     if (c.regexp == '') {

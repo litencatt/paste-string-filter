@@ -57,6 +57,11 @@
     window.location.href = reloadURL
   }
 
+  const handleChange = async (enable: boolean, index: number) => {
+    combinations[index].enable = !enable
+    await storageWrapper.set({ combinations })
+  }
+
   onMount(async () => {
     const items = await getItems()
     filteredStr = items.filteredStr || defaultFilteredString
@@ -65,12 +70,13 @@
 </script>
 
 <Layout>
-  <span slot="title">📝 Paste String Filter</span>
+  <span slot="title">Paste String Filter</span>
   <div class={ContentArea}>
     <p>Filtered word</p>
     <input class={input} id="filtered" bind:value={filteredStr} />
   </div>
   <div class={gridContainer}>
+    <div class={gridItem}>Status</div>
     <div class={gridItem}>Name</div>
     <div class={gridItem}>Regexp</div>
     <div class={gridItem} />
@@ -78,6 +84,9 @@
   {#if combinations}
     {#each combinations as c, i}
       <div class={gridContainer}>
+        <div class={gridItem}>
+          <input class={input} type="checkbox" name="status" checked={c.enable} on:change={handleChange(c.enable, i)} />
+        </div>
         <div class={gridItem}><input class={input} id="name" bind:value={c.name} /></div>
         <div class={gridItem}><input class={input} id="regexp" bind:value={c.regexp} /></div>
         <div class={gridItem}>

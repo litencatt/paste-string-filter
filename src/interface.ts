@@ -5,7 +5,6 @@ export interface Combination {
 }
 
 export interface Items {
-  enable: boolean
   filteredStr: string
   combinations: Combination[]
 }
