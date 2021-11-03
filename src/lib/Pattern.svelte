@@ -40,13 +40,15 @@
 
   const addClick = async (): Promise<void> => {
     const emptyRow: Combination = { name: '', regexp: '', enable: true }
-    combinations.push(emptyRow)
+    combinations = combinations.concat(emptyRow)
     await storageWrapper.set({ combinations: combinations })
     reloadPopup()
   }
 
   const delClick = async (index: number): Promise<void> => {
-    combinations.splice(index, 1)
+    combinations = combinations.filter((v, i) => {
+      return i != index
+    })
     await storageWrapper.set({ combinations: combinations })
     reloadPopup()
   }
