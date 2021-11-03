@@ -27,6 +27,12 @@
     },
   ]
 
+  let selected = [{ name: '', regexp: '', enable: true }]
+  const exampleRegexps = [
+    { name: `custom`, regexp: ``, enable: true },
+    { name: `mail`, regexp: `[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+`, enable: true },
+    { name: `basic auth`, regexp: `basic [a-zA-Z0-9_\\-:\\.=]+`, enable: true },
+  ]
   const getItems = async (): Promise<any> => {
     return await storageWrapper.get(['filteredStr', 'combinations'])
   }
@@ -60,7 +66,18 @@
     const items = await getItems()
     filteredStr = items.filteredStr || defaultFilteredString
     combinations = items.combinations || defaultCombination
+    selected = combinations
   })
+
+  const onChange = async (selectedItem: any, i: number): Promise<void> => {
+    if (selectedItem.name === 'custom') {
+      combinations[i] = { name: 'custom', regexp: '', enable: true }
+    } else {
+      combinations[i] = selectedItem
+    }
+    console.log(combinations)
+    await storageWrapper.set({ combinations: combinations })
+  }
 </script>
 
 <Layout>
@@ -81,6 +98,15 @@
       <div class={gridContainer}>
         <div class={gridItem}>
           <Switch index={i} combination={c} handler={handleChange} />
+        </div>
+        <div class={gridItem}>
+          <select bind:value={selected[i]} on:change={onChange(selected[i], i)}>
+            {#each exampleRegexps as regexp}
+              <option value={regexp}>
+                {regexp.name}
+              </option>
+            {/each}
+          </select>
         </div>
         <div class={gridItem}><input class={input} id="name" bind:value={c.name} /></div>
         <div class={gridItem}><input class={input} id="regexp" bind:value={c.regexp} /></div>
