@@ -71,6 +71,7 @@
   </div>
   <div class={gridContainer}>
     <div class={gridItem}>Status</div>
+    <div class={gridItem}>Preset</div>
     <div class={gridItem}>Name</div>
     <div class={gridItem}>Regexp</div>
     <div class={gridItem} />

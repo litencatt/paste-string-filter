@@ -42,6 +42,7 @@ export const gridContainer = css`
   display: grid;
   grid-template-columns: 5rem 10rem 10rem 10rem;
   margin-bottom: .5rem;
+  grid-template-columns: 3rem 6rem 10rem 10rem 10rem;
 `
 
 export const gridItem = css`
