@@ -1,5 +1,5 @@
 import { storageWrapper } from './storageWrapper'
-import type { Items, Regexp } from './interface'
+import type { Items, Combination } from './interface'
 
 document.addEventListener('paste', pasteStringFilter)
 
@@ -20,24 +20,14 @@ async function pasteStringFilter(event: any) {
     return false
   }
   let paste = clipboardData.getData('text')
-  const items = (await storageWrapper.get(['enable', 'filteredStr', 'regexps'])) as Items
-  if (!items.hasOwnProperty('enable')) {
-    console.log('enable is not set.')
-    return
-  }
-
-  const enable = items['enable']
-  if (!enable) {
-    console.log('Filter is disable now.')
-    return
-  }
+  const items = (await storageWrapper.get(['filteredStr', 'combinations'])) as Items
 
   const filteredStr = items['filteredStr']
-  items['regexps'].forEach((item: Regexp) => {
-    if (item.regexp == '') {
+  items['combinations'].forEach((c: Combination) => {
+    if (c.regexp == '' || !c.enable) {
       return
     }
-    let regexp = new RegExp(item.regexp, 'g')
+    let regexp = new RegExp(c.regexp, 'g')
     paste = paste.replace(regexp, filteredStr)
   })
   elem.value = orignal.slice(0, selectionStart) + paste + orignal.slice(selectionEnd)

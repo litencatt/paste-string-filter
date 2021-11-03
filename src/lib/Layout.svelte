@@ -8,11 +8,8 @@
     margin: 0 0.25rem;
   }
   .title {
-    font-weight: 400;
-    font-size: 1rem;
+    font-weight: bold;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
-  }
-  .content {
-    margin: 0;
   }
 </style>

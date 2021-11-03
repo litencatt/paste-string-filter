@@ -1,10 +1,25 @@
 <script lang="ts">
   import { onMount } from 'svelte'
+  import Layout from './Layout.svelte'
+  import Switch from './Switch.svelte'
   import { storageWrapper } from '../storageWrapper'
-  import type { Regexp } from '../interface'
+  import type { Combination } from '../interface'
+  import {
+    input,
+    deleteButton,
+    addButton,
+    saveButton,
+    gridContainer,
+    gridItem,
+    flexContainer,
+    ContentArea,
+  } from './style'
+
+  let combinations: Combination[]
+  let filteredStr: string
 
   const defaultFilteredString = '(filtered)'
-  const defaultRegExp = [
+  const defaultCombination: Combination[] = [
     {
       name: 'mail',
       regexp: '[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+',
@@ -13,87 +28,76 @@
   ]
 
   const getItems = async (): Promise<any> => {
-    return await storageWrapper.get(['filteredStr', 'regexps'])
+    return await storageWrapper.get(['filteredStr', 'combinations'])
   }
 
-  const handleClick = async (): Promise<void> => {
+  const handleSave = async (): Promise<void> => {
     await storageWrapper.set({
-      regexps: regexps,
-      filteredStr: filteredStr,
+      combinations,
+      filteredStr,
     })
   }
 
   const addClick = async (): Promise<void> => {
-    const emptyRow = { name: '', regexp: '', enable: true }
-    regexps.push(emptyRow)
-    await storageWrapper.set({ regexps: regexps })
+    const emptyRow: Combination = { name: '', regexp: '', enable: true }
+    combinations.push(emptyRow)
+    await storageWrapper.set({ combinations: combinations })
     reloadPopup()
   }
 
   const delClick = async (index: number): Promise<void> => {
-    regexps.splice(index, 1)
-    await storageWrapper.set({ regexps: regexps })
+    combinations.splice(index, 1)
+    await storageWrapper.set({ combinations: combinations })
     reloadPopup()
   }
 
   const reloadPopup = function () {
-    let reloadURL: string
-    if (window.location.href.includes('localhost')) {
-      reloadURL = 'http://localhost:3000/dist/'
-    } else {
-      reloadURL = chrome.runtime.getURL('dist/index.html')
-    }
+    const reloadURL = window.location.href.includes('localhost')
+      ? 'http://localhost:3000/dist/'
+      : chrome.runtime.getURL('dist/index.html')
     window.location.href = reloadURL
   }
 
-  let regexps: Regexp[]
-  let filteredStr: string
+  const handleChange = async (enable: boolean, index: number) => {
+    combinations[index].enable = enable
+    await storageWrapper.set({ combinations })
+  }
+
   onMount(async () => {
     const items = await getItems()
     filteredStr = items.filteredStr || defaultFilteredString
-    regexps = items.regexps || defaultRegExp
+    combinations = items.combinations || defaultCombination
   })
 </script>
 
-<div class="container my-1">
-  <span class="title text-base m-1">Filtered string</span><br />
-  <input class="px-2 py-1 border border-gray-300 rounded" id="filtered" bind:value={filteredStr} />
-</div>
-<div class="container">
-  <span class="title text-base m-1">Patterns</span>
-  <table class="table-fixed">
-    <thead>
-      <tr>
-        <th class="border border-gray-300 text-left px-2">Name</th>
-        <th class="border border-gray-300 text-left px-2">Regexp</th>
-        <th class="border border-gray-300 text-left px-2" />
-      </tr>
-    </thead>
-    <tbody>
-      {#if regexps}
-        {#each regexps as regexp, i}
-          <tr>
-            <td class="border border-gray-300	px-2 py-1">
-              <input class="px-2 py-1 border border-gray-300	rounded" id="name" bind:value={regexp.name} />
-            </td>
-            <td class="border border-gray-300	px-2 py-1">
-              <input class="px-2 py-1 border border-gray-300	rounded" id="regexp" bind:value={regexp.regexp} />
-            </td>
-            <td class="border border-gray-300	px-2 py-1">
-              <button
-                class="px-2 py-1 bg-red-400 text-white rounded hover:bg-red-500"
-                on:click|preventDefault={() => delClick(i)}
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        {/each}
-      {/if}
-    </tbody>
-  </table>
-  <button class="px-2 py-1 bg-blue-400 text-white rounded hover:bg-blue-500" on:click={addClick}> Add </button>
-  <div class="my-1 item-right ">
-    <button class="px-2 py-1 bg-blue-400 text-white rounded hover:bg-blue-500" on:click={handleClick}> Save </button>
+<Layout>
+  <span slot="title">Paste String Filter</span>
+  <div class={ContentArea}>
+    <p>Filtered word</p>
+    <input class={input} id="filtered" bind:value={filteredStr} />
   </div>
-</div>
+  <div class={gridContainer}>
+    <div class={gridItem}>Status</div>
+    <div class={gridItem}>Name</div>
+    <div class={gridItem}>Regexp</div>
+    <div class={gridItem} />
+  </div>
+  {#if combinations}
+    {#each combinations as c, i}
+      <div class={gridContainer}>
+        <div class={gridItem}>
+          <Switch index={i} combination={c} handler={handleChange} />
+        </div>
+        <div class={gridItem}><input class={input} id="name" bind:value={c.name} /></div>
+        <div class={gridItem}><input class={input} id="regexp" bind:value={c.regexp} /></div>
+        <div class={gridItem}>
+          <button type="button" class={deleteButton} on:click|preventDefault={() => delClick(i)}>DELETE</button>
+        </div>
+      </div>
+    {/each}
+  {/if}
+  <div class={flexContainer}>
+    <button type="button" class={saveButton} on:click|preventDefault={handleSave}>SAVE</button>
+    <button type="button" class={addButton} on:click|preventDefault={addClick}>ADD</button>
+  </div>
+</Layout>

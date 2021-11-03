@@ -1,33 +1,13 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import { storageWrapper } from '../storageWrapper'
+  import type { Combination } from '../interface'
 
-  import Grid from './Grid.svelte'
-
-  const getStatus = async (): Promise<boolean> => {
-    // @ts-ignore
-    return (await storageWrapper.get(['enable'])).enable
-  }
-
-  const setStatus = async (enable: boolean) => {
-    storageWrapper.set({ enable })
-  }
+  export let index: number
+  export let combination: Combination
+  export let handler: (enable: boolean, index: number) => void
 
   const onChange: svelte.JSX.FormEventHandler<HTMLInputElement> = async (e) => {
-    const checked = e.currentTarget.checked
-    await setStatus(checked)
-    status = await getStatus()
+    handler(e.currentTarget.checked, index)
   }
-
-  let status: boolean
-  onMount(async () => {
-    status = await getStatus()
-  })
 </script>
 
-<Grid>
-  <span slot="title">Feature</span>
-  <label>
-    <input checked={status} on:change={onChange} type="checkbox" name="status" value="enabled" /> Enabled
-  </label>
-</Grid>
+<input type="checkbox" name="status" checked={combination.enable} on:change={onChange} />
