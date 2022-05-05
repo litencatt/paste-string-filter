@@ -63,7 +63,7 @@
     })
   }
 
-  const handleChange = async (enable: boolean, index: number) => {
+  const enableChange = async (enable: boolean, index: number) => {
     combinations[index].enable = enable
   }
 
@@ -84,7 +84,7 @@
     <input class={input} id="filtered" bind:value={filteredStr} />
   </div>
   <div class={gridContainer}>
-    <div class={gridItem}>Status</div>
+    <div class={gridItem}>Enable</div>
     <div class={gridItem}>Preset</div>
     <div class={gridItem}>Name</div>
     <div class={gridItem}>Regexp</div>
@@ -94,14 +94,12 @@
     {#each combinations as c, i}
       <div class={gridContainer}>
         <div class={gridItem}>
-          <Switch index={i} combination={c} handler={handleChange} />
+          <Switch index={i} combination={c} handler={enableChange} />
         </div>
         <div class={gridItem}>
           <select bind:value={selected[i]} on:change={onChange(selected[i], i)}>
             {#each exampleRegexps as regexp}
-              <option value={regexp}>
-                {regexp.name}
-              </option>
+              <option value={regexp.name}>{regexp.name}</option>
             {/each}
           </select>
         </div>
