@@ -45,7 +45,7 @@
     return await storageWrapper.get(['filteredStr', 'combinations'])
   }
 
-  const handleSave = async (): Promise<void> => {
+  const saveClick = async (): Promise<void> => {
     await storageWrapper.set({
       combinations,
       filteredStr,
@@ -118,7 +118,7 @@
     {/each}
   {/if}
   <div class={flexContainer}>
-    <button type="button" class={saveButton} on:click|preventDefault={handleSave}>SAVE</button>
+    <button type="button" class={saveButton} on:click|preventDefault={saveClick}>SAVE</button>
     <button type="button" class={addButton} on:click|preventDefault={addClick}>ADD</button>
   </div>
 </Layout>
