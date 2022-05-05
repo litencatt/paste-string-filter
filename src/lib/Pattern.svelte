@@ -33,6 +33,14 @@
     { name: `mail`, regexp: `[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+`, enable: true },
     { name: `basic auth`, regexp: `basic [a-zA-Z0-9_\\-:\\.=]+`, enable: true },
   ]
+
+  onMount(async () => {
+    const items = await getItems()
+    filteredStr = items.filteredStr || defaultFilteredString
+    combinations = items.combinations || defaultCombination
+    selected = combinations
+  })
+
   const getItems = async (): Promise<any> => {
     return await storageWrapper.get(['filteredStr', 'combinations'])
   }
@@ -61,13 +69,6 @@
     combinations[index].enable = enable
     await storageWrapper.set({ combinations })
   }
-
-  onMount(async () => {
-    const items = await getItems()
-    filteredStr = items.filteredStr || defaultFilteredString
-    combinations = items.combinations || defaultCombination
-    selected = combinations
-  })
 
   const onChange = async (selectedItem: any, i: number): Promise<void> => {
     if (selectedItem.name === 'custom') {
