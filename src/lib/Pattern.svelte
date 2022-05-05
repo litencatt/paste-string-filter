@@ -112,7 +112,7 @@
         <div class={gridItem}><input class={input} id="name" bind:value={c.name} /></div>
         <div class={gridItem}><input class={input} id="regexp" bind:value={c.regexp} /></div>
         <div class={gridItem}>
-          <button type="button" class={deleteButton} on:click|preventDefault={() => delClick(i)}>DELETE</button>
+          <button type="button" class={deleteButton} on:click|preventDefault={() => delClick(i)}>DEL</button>
         </div>
       </div>
     {/each}
