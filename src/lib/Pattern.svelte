@@ -59,6 +59,7 @@
       // 選んだプリセットの正規表現をセット
       const setRegexp = exampleRegexps.find((r) => r.name == selectedItem)
       combinations[i] = setRegexp as Combination
+      combinations[i].enable = true
     }
     console.log(combinations)
   }
