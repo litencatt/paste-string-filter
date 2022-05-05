@@ -3,6 +3,7 @@
   import Layout from './Layout.svelte'
   import Switch from './Switch.svelte'
   import { storageWrapper } from '../storageWrapper'
+  import { exampleRegexps } from '../regexpPresets'
   import type { Combination } from '../interface'
   import {
     input,
@@ -17,27 +18,11 @@
 
   let combinations: Combination[]
   let filteredStr: string
-
-  const defaultFilteredString = '(filtered)'
-  const defaultCombination: Combination[] = [
-    {
-      name: 'mail',
-      regexp: '[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+',
-      enable: true,
-    },
-  ]
-
   let selected = [{ name: '', regexp: '', enable: true }]
-  const exampleRegexps = [
-    { name: `custom`, regexp: ``, enable: true },
-    { name: `mail`, regexp: `[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+`, enable: true },
-    { name: `basic auth`, regexp: `basic [a-zA-Z0-9_\\-:\\.=]+`, enable: true },
-  ]
-
   onMount(async () => {
     const items = await getItems()
-    filteredStr = items.filteredStr || defaultFilteredString
-    combinations = items.combinations || defaultCombination
+    filteredStr = items.filteredStr || '(filtered)'
+    combinations = items.combinations || [exampleRegexps[1]]
     selected = combinations
   })
 
