@@ -27,6 +27,8 @@ async function pasteStringFilter(event: any) {
     if (c.regexp == '' || !c.enable) {
       return
     }
+    // ここに渡ってくるregexpはエスケープされた文字列でなければならない
+    // e.g c.regexp = '[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+'
     const regexp = new RegExp(c.regexp, 'g')
     paste = paste.replace(regexp, filteredStr)
   })
