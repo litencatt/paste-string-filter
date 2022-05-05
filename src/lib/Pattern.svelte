@@ -18,7 +18,7 @@
 
   let combinations: Combination[]
   let filteredStr: string
-  let selected = [{ name: '', regexp: '', enable: true }]
+  let selected: Combination[]
   onMount(async () => {
     const items = await getItems()
     filteredStr = items.filteredStr || '(filtered)'
