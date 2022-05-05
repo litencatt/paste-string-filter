@@ -68,10 +68,12 @@
   }
 
   const onChange = async (selectedItem: any, i: number): Promise<void> => {
-    if (selectedItem.name === 'custom') {
+    if (selectedItem === 'custom') {
       combinations[i] = { name: 'custom', regexp: '', enable: true }
     } else {
-      combinations[i] = selectedItem
+      // 選んだプリセットの正規表現をセット
+      const setRegexp = exampleRegexps.find((r) => r.name == selectedItem)
+      combinations[i] = setRegexp as Combination
     }
     console.log(combinations)
   }
