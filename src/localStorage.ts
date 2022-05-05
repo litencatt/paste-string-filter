@@ -24,7 +24,11 @@ export const lStorage = {
   set: async (items: any) => {
     return Promise.resolve().then(() => {
       Object.keys(items).forEach((key) => {
-        localStorage.setItem(key, JSON.stringify(items[key]))
+        if (typeof items[key] == 'string') {
+          localStorage.setItem(key, items[key])
+        } else {
+          localStorage.setItem(key, JSON.stringify(items[key]))
+        }
       })
     })
   },

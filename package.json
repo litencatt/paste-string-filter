@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "watch": "vite build --watch",
-    "build": "vite build && zip -r psf.zip ./ -x psf/\\* node_modules/\\* .git/\\* .vscode/\\* .* *.zip src/\\* *config.js *.log .DS_Store",
+    "build": "vite build",
+    "compress": "zip -r psf.zip ./ -x psf/\\* node_modules/\\* .git/\\* .vscode/\\* .* *.zip src/\\* *config.js *.log .DS_Store",
     "svelte-check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "repository": "git@github.com:litencatt/paste-string-filter.git",
