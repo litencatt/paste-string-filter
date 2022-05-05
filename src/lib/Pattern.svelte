@@ -90,6 +90,7 @@
         </div>
         <div class={gridItem}>
           <select bind:value={selected[i]} on:change={onChange(selected[i], i)}>
+            <option value="" disabled>-- Select Preset --</option>
             {#each exampleRegexps as regexp}
               <option value={regexp.name}>{regexp.name}</option>
             {/each}
