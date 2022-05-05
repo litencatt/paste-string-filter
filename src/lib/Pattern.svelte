@@ -70,6 +70,10 @@
     <p>Filtered word</p>
     <input class={input} id="filtered" bind:value={filteredStr} />
   </div>
+  <div class={flexContainer}>
+    <button type="button" class={saveButton} on:click|preventDefault={saveClick}>SAVE</button>
+    <button type="button" class={addButton} on:click|preventDefault={addClick}>ADD</button>
+  </div>
   <div class={gridContainer}>
     <div class={gridItem}>Enable</div>
     <div class={gridItem}>Preset</div>
@@ -98,8 +102,4 @@
       </div>
     {/each}
   {/if}
-  <div class={flexContainer}>
-    <button type="button" class={saveButton} on:click|preventDefault={saveClick}>SAVE</button>
-    <button type="button" class={addButton} on:click|preventDefault={addClick}>ADD</button>
-  </div>
 </Layout>
