@@ -55,19 +55,16 @@
   const addClick = async (): Promise<void> => {
     const emptyRow: Combination = { name: '', regexp: '', enable: true }
     combinations = combinations.concat(emptyRow)
-    await storageWrapper.set({ combinations: combinations })
   }
 
   const delClick = async (index: number): Promise<void> => {
     combinations = combinations.filter((v, i) => {
       return i != index
     })
-    await storageWrapper.set({ combinations: combinations })
   }
 
   const handleChange = async (enable: boolean, index: number) => {
     combinations[index].enable = enable
-    await storageWrapper.set({ combinations })
   }
 
   const onChange = async (selectedItem: any, i: number): Promise<void> => {
@@ -77,7 +74,6 @@
       combinations[i] = selectedItem
     }
     console.log(combinations)
-    await storageWrapper.set({ combinations: combinations })
   }
 </script>
 
