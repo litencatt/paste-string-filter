@@ -1,6 +1,5 @@
 export const exampleRegexps = [
   { name: 'custom', regexp: ``, enable: true },
-  { name: 'mail', regexp: `[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+`, enable: true },
   { name: 'artifactory-password', regexp: `(?: |=|:|\"|^)AP[0-9ABCDEF][a-zA-Z0-9]{8,}`, enable: true },
   { name: 'artifactory-token', regexp: `(?: |=|:|\"|^)AKC[a-zA-Z0-9]{10,}`, enable: true },
   { name: 'auth-basic', regexp: `basic [a-zA-Z0-9_\\-:\\.=]+`, enable: true },
@@ -57,6 +56,7 @@ export const exampleRegexps = [
   { name: 'javascript-variables', regexp: ` (?<=const |let |var )([a-zA-Z0-9_]+?)(?=[;.= ])`, enable: true },
   { name: 'linkedin-id', regexp: `(?i)linkedin(.{0,20})?(?-i)['\"][0-9a-z]{12}['\"]`, enable: true },
   { name: 'linkedin-secret', regexp: `(?i)linkedin(.{0,20})?['\"][0-9a-z]{16}['\"]`, enable: true },
+  { name: 'mail-address', regexp: `[\\w\\-._]+@[\\w\\-._]+\\.[A-Za-z]+`, enable: true },
   { name: 'mailchamp-api', regexp: `[0-9a-f]{32}-us[0-9]{1,2}`, enable: true },
   { name: 'mailgun-api', regexp: `key-[0-9a-zA-Z]{32}`, enable: true },
   { name: 'mailto', regexp: `(?<=mailto:)[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9.-]+`, enable: true },
